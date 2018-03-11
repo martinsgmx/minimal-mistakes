@@ -9,8 +9,8 @@ minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Martín Sg. | @martinsgmx "
-title_separator          : "-"
+title                    : "@martinsgmx "
+title_separator          : "|"
 name                     : "Martín Sg"
 description              : "Personal blog."
 url                      : "https://martinsgmx.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
@@ -51,7 +51,7 @@ reCaptcha:
   secret                 :
 atom_feed:
   path                   : # blank (default) uses feed.xml
-search                   : # true, false (default)
+search                   : true # true, false (default)
 search_full_content      : # true, false (default)
 search_provider          : # lunr (default), algolia
 algolia:
@@ -73,7 +73,7 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : # Open Graph/Twitter default site image
+og_image                 : "/assets/og-logo.png" # Open Graph/Twitter default site image
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
