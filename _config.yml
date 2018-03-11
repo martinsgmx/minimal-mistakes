@@ -11,7 +11,7 @@ minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "
 locale                   : "en-US"
 title                    : "Martín Sg. | @martinsgmx "
 title_separator          : "-"
-name                     : "Martín Sg."
+name                     : "Martín Sg"
 description              : "Personal blog."
 url                      : "https://martinsgmx.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
@@ -91,8 +91,8 @@ analytics:
 # Site Author
 author:
   name             : "Martín Sg."
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an amazing person."
+  avatar           : "/assets/bio-photo.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  bio              : " If you learn something interesting, please, share it to world."
   location         : "Space!"
   email            : "martindev.mx@inbox.ru"
   uri              :
