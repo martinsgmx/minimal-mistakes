@@ -91,7 +91,7 @@ analytics:
 # Site Author
 author:
   name             : "Martín Sg."
-  avatar           : "/assets/bio-photo.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/bio-photo.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : " If you learn something interesting, please, share it to world."
   location         : "Space!"
   email            : "martindev.mx@inbox.ru"
