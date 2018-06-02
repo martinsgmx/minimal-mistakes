@@ -1,5 +1,6 @@
 ---
 title: "Flashing OpenTX to FlySky TH9x with AVRDUDE"
+date:   2017-12-22 00:15:00 -0600
 header:
     teaser: "{{ '/assets/img/posts/2017-12-22-flashing-opentx-to-flysky-th9x-with-avrdude/header.png' | absolute_url }}"
 ---
@@ -10,7 +11,7 @@ DISCLAIMER:
 I don't take any responsibility about your control. Flash under your own risk! If you're following this guide step by step, your don't have any problem later. If your main board (th9x) is brick, you need buy other to solved problem. Don't need more! Not, don't need sell you control by parts. TH9x main board is very generic and some little cheap, you can buy one on [Banggood] or AliExpress.
 
 Before starts you need know something's...
-------
+<!-- ------ -->
 
 You need a AVR programmer for flashing [OpenTX] hex (firmware). You can use a USBasp, or you can use your own Arduino as AVRisp. On my case, I used USBasp.
 
