@@ -133,8 +133,6 @@ After flashing OpenTX, and on the first power on, the radio send a error code <<
 
 > If you need access to Setup menu, or any other? The way to access is Long press the + KEY. Try with other keys (UP, -, DOWN).
 
-> If you need how to configure OpenTX and setup your control, check [OpenTX University.]
-
 ENJOY! :D
 
 [OpenTX]: http://www.open-tx.org/downloads.html
