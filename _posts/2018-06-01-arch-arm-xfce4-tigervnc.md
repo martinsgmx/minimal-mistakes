@@ -192,7 +192,7 @@ Final result:
 
 ![VNCviewer]({{"/assets/img/posts/2018-06-01-arch-arm-xfce4-tigervnc/002-vnc-viewer.png" | absolute_url }})
 
-If you want know the packages installed on my Raspberry, you can check this gist!
+If you want know the packages installed on my Raspberry, [you can check this gist!]
 
 [TigerVNC]: https://wiki.archlinux.org/index.php/Tigervnc
 [XFCE]: https://wiki.archlinux.org/index.php/xfce
