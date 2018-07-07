@@ -1,6 +1,6 @@
 ---
 title: "Arch-ARM: Simple installation"
-date: 2018-05-25 00:15:00 -0600
+date:   2018-05-25 00:15:00 -0600
 header:
     teaser: "{{ '/assets/img/posts/2018-05-25-arch-arm-simple-installation/header.png' | absolute_url }}"
 ---
@@ -123,14 +123,14 @@ Now, the SD is ready to install Arch-ARM. But, before that, we need create two f
 Now, download the latest version of Arch ARM rpi 2 and uncompressed with bsdtar.
 
 ```bash
-[root@arch ~]: wget http://os.archlinux.org/os/ArchLinuxARM-rpi-2-latest.tar.gz
+[root@arch ~]: wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz
 [root@arch ~]: bsdtar -xvpf ArhLinuxARM-rpi-2-latest.tar.gz -C ./root/
 ```
 
 Once bsdtar finished, we need move a directory: from ./root/boot/ to ./boot/ and sync.
 
 ```bash
-[root@arch ~]: mv ./root/boot/* ./boot
+[root@arch ~]: mv ./root/boot/* ./boot/
 [root@arch ~]: sync
 ```
 
@@ -148,7 +148,7 @@ After know the IP, connect via SSH:
 
 > The default user is: alarm and the password: alarm
 
-> The default user to root is: root and password: root
+> The default root user is: root and password: root
 
 ```bash
 [root@arch ~]: ssh alarm@192.168.1.XX
@@ -161,22 +161,26 @@ The essentials steps.
 Now you're connected, we need configure somethings. Type su on the console and login with root (password: root)
 Removed the default localtime, and linked to new:
 
-> To list all zones available, type: ls /usr/share/zoneinfo/* | grep -i "<MY_ZONE>"
+> To list all zones available, type: ls /usr/share/zoneinfo/*
 
 ```bash
 [root@192.168.1.XX ~]: rm /etc/localtime
 [root@192.168.1.XX ~]: ln -s /usr/share/zoneinfo/America/Mexico_city /etc/localtime
 ```
 
-Now, we need generate some environment variables and generate the locale. Uncomment your locale on locale-gen file:
+Now, we need generate some environment variables and generate the locale. Uncomment your locale on locale.gen file:
+
+> With nano, to save you need press CTRL + o key, and CTRL + x to quit.
 
 ```bash
-[root@192.168.1.XX ~]: nano /etc/locale-gen
+[root@192.168.1.XX ~]: nano /etc/locale.gen
 ....
 #en_DK ISO-8859-1
 en_GB.UTF-8 UTF-8
 #en_GB ISO-8859-1
 ...
+[root@192.168.1.XX ~]: nano /etc/locale.conf
+LANG=en_GB.UTF-8
 [root@192.168.1.XX ~]: nano /etc/profile 
 ...
 export LANGUAGE=en_GB.UTF-8
@@ -190,7 +194,7 @@ Generating locales...
 Generation complete.
 ```
 
-We need set hardware clock to UTF and set timezone (aka Mexico_city):
+We need set hardware clock to UTF and set timezone (in my case Mexico_city):
 
 ```bash
 [root@192.168.1.XX ~]: timedatectl set-local-rtc 0
@@ -199,9 +203,10 @@ We need set hardware clock to UTF and set timezone (aka Mexico_city):
 
 > Optional step, config static IP
 
-For set a static IP we need modified /etc/systemd/network/eth0.network The final result looks like this:
+For set a static IP we need modify /etc/systemd/network/eth0.network The final result looks like this:
 
 ```bash
+[root@192.168.1.XX ~]: nano /etc/systemd/network/eth0.network
 [Match]
 Name=eth0
 
@@ -224,6 +229,15 @@ Enable and start networkd services:
 ```bash
 [root@192.168.1.XX ~]: systemctl enable systemd-networkd
 [root@192.168.1.XX ~]: systemctl start systemd-networkd
+```
+
+> If you want change the hostname, you need modified two files: /etc/hostname and /etc/hosts
+
+```bash
+[root@192.168.1.XX ~]: nano /etc/hostname
+arch-rpi
+[root@192.168.1.XX ~]: nano /etc/hosts
+127.0.0.1 localhost.localdomain localhost arch-rpi
 [root@192.168.1.XX ~]: reboot
 ```
 
@@ -237,6 +251,11 @@ First to all, we need generate a pacman key, after that, we can upgrade your sys
 ...
 gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
 [root@192.168.1.XX ~]: pacman -Syu
+...
+:: Proceed with installation? [Y/n] y
+...
+:: Starting full system upgrade...
+...
 [root@192.168.1.XX ~]: reboot
 ```
 
@@ -275,28 +294,19 @@ Now, install yaourt:
 > You need have installed base-devel and wget. Only need type: sudo pacman -S base-devel wget
 
 ```bash
-[alarm@192.168.1.XX ~]: wget https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz 
-[alarm@192.168.1.XX ~]: tar -xvfz package-query.tar.gz
+[alarm@192.168.1.XX ~]: wget http://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz 
+[alarm@192.168.1.XX ~]: tar -xvzf package-query.tar.gz
 [alarm@192.168.1.XX ~]: cd package-query/
 [alarm@192.168.1.XX ~]: makepkg -si
 [alarm@192.168.1.XX ~]: cd ..
-[alarm@192.168.1.XX ~]: wget https://aur.archlinux.org/cgit/aur.git/snapshot/yaourt.tar.gz
+[alarm@192.168.1.XX ~]: wget http://aur.archlinux.org/cgit/aur.git/snapshot/yaourt.tar.gz
 [alarm@192.168.1.XX ~]: tar -xvzf yaourt.tar.gz
 [alarm@192.168.1.XX ~]: cd yaourt/
 [alarm@192.168.1.XX ~]: makepkg -si
 [alarm@192.168.1.XX ~]: cd ..
 ``` 
 
-Install XFCE4.
-------
+Well, your Arch ARM it's ready. If you want a graphic environment, check my other post: [Arch-ARM: XFCE and TigerVNC installation.]
+On my case, don't need more, it's enough, only use my RPi to AVRdude and other Atmel utilities.
 
-Installing XFCE4:
-
-```bash
-[alarm@192.168.1.XX ~]: sudo pacman -S xorg-server xorg-xrefresh xf86-video-fbdev
-[alarm@192.168.1.XX ~]: sudo pacman -S xfce4 xfce4-goodies xarchive 
-[alarm@192.168.1.XX ~]: sudo pacman -S sddm
-[alarm@192.168.1.XX ~]: sudo sh -c "sddm --example-config > /etc/sddm/conf"
-[alarm@192.168.1.XX ~]: sudo systemctl enable sddm
-[alarm@192.168.1.XX ~]: sudo start sddm
-```
+[Arch-ARM: XFCE and TigerVNC installation.]: https://martinsgmx.github.io/arch-arm-xfce4-tigervnc/
