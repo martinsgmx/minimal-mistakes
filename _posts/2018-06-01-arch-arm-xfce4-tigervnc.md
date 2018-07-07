@@ -5,7 +5,7 @@ header:
     teaser: "{{ '/assets/img/posts/2018-06-01-arch-arm-xfce4-tigervnc/header.png' | absolute_url }}"
 ---
 
-Before install [cXFCE] and [TigerVNC], I recommend read both config post and put attention on Installation and Configuration sections. This installation is only thought VNC connection, without HDMI display.
+Before install [XFCE] and [TigerVNC], I recommend read both config post and put attention on Installation and Configuration sections. This installation is only thought VNC connection, without HDMI display.
 
 XFCE installation:
 ------
@@ -157,7 +157,7 @@ To kill VNCserver:
 Killing Xvnc process ID 329
 ```
 
-How to connect Raspberry VNCserver to a VNC viewer?:
+How to connect Raspberry VNCserver to a VNC viewer?
 ------
 
 First to all, we need know somethings. Every VNCserver by start with Raspberry generate a process with a display number. That's number it's interpreter by :X Where X it's the display number.
