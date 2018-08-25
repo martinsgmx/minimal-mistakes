@@ -22,12 +22,11 @@ First to all, you need download the latest version of Arduino CLI from the [Ardu
 
 ```bash
 cyan0xff@raspberrypi:~ $ wget http://downloads.arduino.cc/arduino-cli/arduino-cli-0.2.0-alpha.preview-linuxarm.tar.bz2
-
 ```
 
 After that, you need uncompressed the execute file and rename to arduino-cli:
 
-``bash
+```bash
 cyan0xff@raspberrypi:~ $ tar -xvf arduino-cli-0.2.0-alpha.preview-linuxarm.tar.bz2
 cyan0xff@raspberrypi:~ $ mv arduino-cli-0.2.0-alpha.preview-linuxarm.tar.bz2 arduino-cli
 ```
