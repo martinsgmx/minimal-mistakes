@@ -7,7 +7,7 @@ header:
 
 Some hours ago, [Arduino.cc] release Arduino Command Line Interface (a.k.a CLI).
 
-> For more details, check this video: https://youtu.be/3vtIisvxewc
+> For more details, check this video: [https://youtu.be/3vtIisvxewc]
 
 Basically this the Arduino toolchains. With this tools you avoid write the Makefile every you can need it. The development is more simple and faster than with other solution (avr-gcc and avr-dude). You can edit your Arduino Sketch (*.ino) with any text editor, vim, nano or whatever you use, and later compiler and deploy it. All over from your terminal!
 
@@ -231,5 +231,6 @@ Flags:
 Use "arduino-cli [command] --help" for more information about a command.
 ```
 
+[https://youtu.be/3vtIisvxewc]: https://youtu.be/3vtIisvxewc
 [Arduino.cc]: https://www.arduino.cc/
 [Arduino-CLI repo]: https://github.com/arduino/arduino-cli
