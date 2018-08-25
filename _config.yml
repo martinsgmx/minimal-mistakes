@@ -92,7 +92,7 @@ analytics:
 author:
   name             : "Martín Sg."
   avatar           : "/assets/bio-photo.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : " If you learn something interesting, please, share it to world."
+  bio              : "If you learn something interesting, share it with the world."
   location         : "Space!"
   email            : "martindev.mx@inbox.ru"
   uri              :
