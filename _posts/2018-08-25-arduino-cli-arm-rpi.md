@@ -199,6 +199,18 @@ Name: "DatavisionLCD"
 cyan0xff@raspberrypi:~ $
 ```
 
+> Installing a lib, LcdProgressBar:
+
+```bash
+cyan0xff@raspberrypi:~ $ sudo arduino-cli lib install LcdProgressBar
+ 0 / 536477 [----------------------------------------------------------------------------------------------------]   0.00%LcdProgressBar@1.0.1 0 B / 523.90 KiB [--------------------------------------------------------------------------]   0.00%LcdProgressBar@1.0.1 75.20 KiB / 523.90 KiB [=========>-------------------------------------------------------]  14.35% 2sLcdProgressBar@1.0.1 334.96 KiB / 523.90 KiB [==========================================>------------------------]  63.94%LcdProgressBar@1.0.1 downloaded
+
+Installed LcdProgressBar@1.0.1
+cyan0xff@raspberrypi:~ $
+```
+
+And that's it!
+
 > Arduino CLI commands:
 
 ```bash
