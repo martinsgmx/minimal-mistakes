@@ -2,16 +2,14 @@
 title:  "Arduino CLI with ARM host (RPi)"
 date:   2018-08-25 00:00:00 -0600
 header:
-    teaser: "{{ '/assets/img/posts/2018-08-25-arduino-cli-arm-rpi/header.png' | absolute_url }}"
+    teaser: "https://raw.githubusercontent.com/martinsgmx/martinsgmx.github.io/master/assets/img/posts/2018-08-25-arduino-cli-arm-rpi/header.png"
 ---
 
-Some hours ago, [Arduino.cc] release Arduino Command Line Interface (a.k.a CLI).
+Basically this the Arduino toolchains. With this tools you avoid write the Makefile and build with Arduino IDE. With this solution you can edit your Arduino Sketch (*.ino) with any text editor, vim, nano or whatever you use, and later compiler and deploy it. All over from your terminal!
 
-> For more details, check this video: [https://youtu.be/3vtIisvxewc]
+> Protip: If you're using vim, you can install [Arduino syntax highlighting]!
 
-Basically this the Arduino toolchains. With this tools you avoid write the Makefile every you can need it. The development is more simple and faster than with other solution (avr-gcc and avr-dude). You can edit your Arduino Sketch (*.ino) with any text editor, vim, nano or whatever you use, and later compiler and deploy it. All over from your terminal!
-
-By this example, I show you how to download and configure Arduino CLI on an Raspberry 2 B with Raspbian OS. Theoretically, this guide can used for install in any Linux architecture (with the correct build), in this case ARM.
+On this example, I show you how to download and configure Arduino CLI on an Raspberry 2 B with Raspbian OS. Theorically, this guide can used for install in any Linux architecture (with the correct build: ARM64, x86, x64).
 
 > IMPORTANT: this version is under development (alpha version), maybe you have a experience a unstable behavior!
 
@@ -24,11 +22,11 @@ First to all, you need download the latest version of Arduino CLI from the [Ardu
 cyan0xff@raspberrypi:~ $ wget http://downloads.arduino.cc/arduino-cli/arduino-cli-0.2.0-alpha.preview-linuxarm.tar.bz2
 ```
 
-After that, you need uncompressed the execute file and rename to arduino-cli:
+After that, uncompressed the file and rename to arduino-cli:
 
 ```bash
 cyan0xff@raspberrypi:~ $ tar -xvf arduino-cli-0.2.0-alpha.preview-linuxarm.tar.bz2
-cyan0xff@raspberrypi:~ $ mv arduino-cli-0.2.0-alpha.preview-linuxarm.tar.bz2 arduino-cli
+cyan0xff@raspberrypi:~ $ mv arduino-cli-0.2.0-alpha.preview-linuxarm arduino-cli
 ```
 
 Now, move arduino-cli to /usr/local/bin and create your default workspace for Arduino (under /home/ user dir). Also you need create a dir (.arduino15/) and a file (.json) inside it to manage the Arduino packages, both under /root/ directory:
@@ -53,7 +51,7 @@ After that, you need download the boards index, type:
 cyan0xff@raspberrypi: $ sudo arduino-cli core update-index
 ```
 
-After, install the core avr (or whatever you need it):
+After, install the arduino:avr core (or whatever you need):
 
 ```bash
 cyan0xff@raspberrypi: $ sudo arduino-cli core install arduino:avr
@@ -80,7 +78,7 @@ FQBN    Port            ID              Board Name
         /dev/ttyUSB0    1A86:7523       unknown
 ```
 
-> NOTE: on mi case, the Board Name is unknown because is an clone board of UNO
+> NOTE: on this case, the Board Name is unknown because is an clone board.
 
 First project
 ------
@@ -164,9 +162,9 @@ Hello from Arduino!
 How to search and install an lib?
 ------
 
-Arduino CLI provide a tool for search and download the same libraries of Arduino IDE from official repos. With this tool you can download and install any lib if you need it!
+Arduino CLI provide a tool for search and download the same libraries of Arduino IDE from official repos. With this tool you can download and install any lib you need it!
 
-> You can use grep for filter the info. Example:
+> Tip: You can use grep for filter the info. Example:
 
 ```bash
 cyan0xff@raspberrypi:~ $ sudo arduino-cli lib search lcd | grep -i "Name:\|Paragraph:"
@@ -213,7 +211,7 @@ Installed LcdProgressBar@1.0.1
 cyan0xff@raspberrypi:~ $
 ```
 
-And that's it!
+And that's it, now you can add it in your .ino file!
 
 > Arduino CLI commands:
 
@@ -247,6 +245,6 @@ Flags:
 Use "arduino-cli [command] --help" for more information about a command.
 ```
 
-[https://youtu.be/3vtIisvxewc]: https://youtu.be/3vtIisvxewc
+[Arduino syntax highlighting]:https://github.com/sudar/vim-arduino-syntax
 [Arduino.cc]: https://www.arduino.cc/
 [Arduino-CLI repo]: https://github.com/arduino/arduino-cli
