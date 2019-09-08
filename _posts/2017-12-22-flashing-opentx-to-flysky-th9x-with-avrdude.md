@@ -16,7 +16,7 @@ Not, don't need sell your control by spare parts. TH9x main board is very generi
 Before starts you need know something's...
 <!-- ------ -->
 
-You need a AVR programmer for flashing [OpenTX] hex (firmware). You can use a USBasp, or you can use your own Arduino as AVRisp (follow this [Arduino official guide]).
+You need an AVR programmer for flashing [OpenTX] hex (firmware). You can use a USBasp, or an Arduino as AVRisp (follow this [Arduino official guide]).
 This guide is based on USBasp, but, teorycally it's the same way with Arduino as ISP.
 
 Let's starts...
