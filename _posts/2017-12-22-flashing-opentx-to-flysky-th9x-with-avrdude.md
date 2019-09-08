@@ -2,7 +2,7 @@
 title: "Flashing OpenTX to FlySky TH9x with AVRDUDE"
 date:   2017-12-22 00:15:00 -0600
 header:
-    teaser: {{ '/assets/img/posts/2017-12-22-flashing-opentx-to-flysky-th9x-with-avrdude/header.png' | absolute_url }}
+    teaser: "https://raw.githubusercontent.com/martinsgmx/martinsgmx.github.io/master/assets/img/posts/2017-12-22-flashing-opentx-to-flysky-th9x-with-avrdude/header.png"
 ---
 
 DISCLAIMER:
