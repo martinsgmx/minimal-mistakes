@@ -2,7 +2,7 @@
 title: "Arch-ARM: xfce4 and x11vnc installation"
 date:   2018-06-01 00:18:00 -0600
 header:
-    teaser: "{{ '/assets/img/posts/2018-06-01-arch-arm-xfce4-tigervnc/header.png' | absolute_url }}"
+    teaser: "https://raw.githubusercontent.com/martinsgmx/martinsgmx.github.io/master/assets/img/posts/2018-06-01-arch-arm-xfce4-tigervnc/header.png"
 ---
 
 Before install [XFCE] and [TigerVNC], I recommend read both config post and put attention on Installation and Configuration sections. This installation is only thought VNC connection, without HDMI display.
@@ -31,7 +31,9 @@ Enter a selection (default=all): ''ENTER''
 :: Proceed with installation? [Y/n] y
 ```
 
-After install XFCE4, you can start XFCE with typing on terminal (IMPORTANT: with this method, you need have a monitor connected!):
+> IMPORTANT: at this point you need have a monitor connected!
+
+After install XFCE4, you can start XFCE by typing on terminal 
 
 ```bash
 [alarm@192.168.1.XX ~]: startxfce4
@@ -49,7 +51,7 @@ TigerVNC installation:
 (4/4) Updating the desktop file MIME type cache...
 ```
 
-After installation, we need type on terminal: vncserver With that VNC execute for first time and you need put a new password fot VNC connection. Also, vncserver create some config files:
+After installation, we need type on terminal: 'vncserver' That execute VNC for first time and you need put a new password fot VNC connection. Also, vncserver create some config files:
 
 ```bash
 [alarm@192.168.1.XX ~]: vncserver
@@ -70,7 +72,7 @@ Starting applications specified in /home/alarm/.vnc/xstartup
 Log file is /home/alarm/.vnc/alarmpi:1.log
 ```
 
-Now, kill the server for edit default startup script:
+Now, kill the server and edit your default startup script:
 
 ```bash
 [alarm@192.168.1.XX ~]: vncserver -kill :1
@@ -92,9 +94,9 @@ exec startxfce4
 [alarm@192.168.1.XX ~]: chmod u+x ~/.vnc/xstartup
 ```
 
-> Why create a copy of xstartup -> xstartup.bckp? Well, it's a good practice make a copy of any config file before modify it! So, if you need back to old config, only need rename that file!
+> Why create a copy of xstartup (xstartup.bckp)? Well, it's a good practice make a copy of any config file before modify it! So, if you need back to old config, only need rename that file!
 
-Now, edit ~/.vnc/config Choose a screen size and other parameters if you need it:
+Edit ~/.vnc/config Choose a screen size and other parameters if you need it:
 
 ```bash
 [alarm@192.168.1.XX ~]: cp ~/.vnc/config ~/.vnc/config.bckp
@@ -110,7 +112,7 @@ geometry=720x480
 # alwaysshared
 ```
 
-> If you want some doubts about video screen size, [check this wiki post.]
+> If you want some doubts about video screen size, [check this post.]
 
 After that, create a environment variable for a display:
 
@@ -123,13 +125,12 @@ export DISPLAY=:0
 
 VNCserver it's ready!
 
-> Remember, you need execute in terminal vncserver every time with need you!
+> Remember: you need execute vncserver in terminal every time wants need it!
 
 To execute VNCserver:
 
 ```bash
 [alarm@192.168.1.XX ~]: vncserver
-
 
 New 'alarmpi:1 (alarm)' desktop is alarmpi:1
 
@@ -137,8 +138,7 @@ Starting applications specified in /home/alarm/.vnc/xstartup
 Log file is /home/alarm/.vnc/alarmpi:1.log
 ```
 
-
-To list all VNCserver:
+How to list all VNCserver?:
 
 ```bash
 [alarm@192.168.1.XX ~]: vncserver -list
@@ -149,8 +149,7 @@ X DISPLAY #     PROCESS ID
 :1              329
 ```
 
-To kill VNCserver:
-
+To kill a VNCserver:
 
 ```bash
 [alarm@192.168.1.XX ~]: vncserver -kill :1
@@ -160,13 +159,12 @@ Killing Xvnc process ID 329
 How to connect Raspberry VNCserver to a VNC viewer?
 ------
 
-First to all, we need know somethings. Every VNCserver by start with Raspberry generate a process with a display number. That's number it's interpreter by :X Where X it's the display number.
+First to all, we need know somethings. Every VNCserver by start with Raspberry generate a process with a display number. That's number it's interpreter by :X.
 
 > Yep! You can generate VNC server's unlimited if you want! Only limitation it's Raspberry resources!
 
-Every VNCserver generate a connection port 590X Again, X it's the number assign by VNCserver.
-To connect to own Raspberry, with need execute vncserver on Raspberry side, and connect via VNCviewer by the port assign.
-Every connection it's via Raspberry IP and port 590X.
+Every VNCserver generate a port connection 590X.
+To connect the Raspberry, with need execute vncserver on Raspberry side, and connect via VNCviewer by the port assigned.
 
 Example:
 
@@ -188,7 +186,7 @@ Log file is /home/alarm/.vnc/alarmpi:1.log
 
 [You can download VNCviewer from here!]
 
-Final result:
+The final result looks like that:
 
 ![VNCviewer]({{"/assets/img/posts/2018-06-01-arch-arm-xfce4-tigervnc/002-vnc-viewer.png" | absolute_url }})
 
