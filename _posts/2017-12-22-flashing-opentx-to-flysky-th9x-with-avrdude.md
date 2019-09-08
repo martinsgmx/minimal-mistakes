@@ -49,11 +49,9 @@ I use a AVR cable with 10 pins to connect directly the main board with USBasp. I
 
 You can use double sided tape to stick the cable and avoid desolded.
 
-After weld it and before screw it the main board, verified the screen doesn't move.
+After weld it and before screw it again, verify the screen doesn't move.
 
 ![Screen screw]({{"/assets/img/posts/2017-12-22-flashing-opentx-to-flysky-th9x-with-avrdude/004_before_screw.png" | absolute_url }})
-
-Now, screw it again!
 
 Well, after complete this, you control is ready to AVRdude. 
 
@@ -141,7 +139,7 @@ After flashing OpenTX, and on the first power on, the radio send a error code <<
 ENJOY! :D
 
 [OpenTX]: http://www.open-tx.org/downloads.html
-[Arduino official guide]https://www.arduino.cc/en/Tutorial/ArduinoISP
+[Arduino official guide]: https://www.arduino.cc/en/Tutorial/ArduinoISP
 [Linux .zip (only .hex)]: https://github.com/martindevmx/opentx-flysky-th9x/blob/master/opentxt-2.2-th9x-linux.zip?raw=true
 [Windows .zip]: https://github.com/martindevmx/opentx-flysky-th9x/blob/master/opentxt-2.2-th9x-windows.zip?raw=true
 [OpenTX University.]: http://open-txu.org/home/undergraduate-courses/radio-setup/general-radio-settings/
