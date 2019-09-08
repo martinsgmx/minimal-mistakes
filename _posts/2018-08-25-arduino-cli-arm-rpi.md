@@ -19,42 +19,42 @@ First steps
 First to all, you need download the latest version of Arduino CLI from the [Arduino-CLI repo]:
 
 ```bash
-cyan0xff@raspberrypi:~ $ wget http://downloads.arduino.cc/arduino-cli/arduino-cli-0.2.0-alpha.preview-linuxarm.tar.bz2
+hst@rpi:~ $ wget http://downloads.arduino.cc/arduino-cli/arduino-cli-0.2.0-alpha.preview-linuxarm.tar.bz2
 ```
 
 After that, uncompressed the file and rename to arduino-cli:
 
 ```bash
-cyan0xff@raspberrypi:~ $ tar -xvf arduino-cli-0.2.0-alpha.preview-linuxarm.tar.bz2
-cyan0xff@raspberrypi:~ $ mv arduino-cli-0.2.0-alpha.preview-linuxarm arduino-cli
+hst@rpi:~ $ tar -xvf arduino-cli-0.2.0-alpha.preview-linuxarm.tar.bz2
+hst@rpi:~ $ mv arduino-cli-0.2.0-alpha.preview-linuxarm arduino-cli
 ```
 
 Now, move arduino-cli to /usr/local/bin and create your default workspace for Arduino (under /home/ user dir). Also you need create a dir (.arduino15/) and a file (.json) inside it to manage the Arduino packages, both under /root/ directory:
 
 ```bash
-cyan0xff@raspberrypi:~ $ sudo mv arduino-cli /usr/local/bin
-cyan0xff@raspberrypi:~ $ mkdir ~/Arduino/
-cyan0xff@raspberrypi:~ $ sudo mkdir /root/.arduino15
-cyan0xff@raspberrypi:~ $ sudo touch /root/.arduino15/package_index.json
+hst@rpi:~ $ sudo mv arduino-cli /usr/local/bin
+hst@rpi:~ $ mkdir ~/Arduino/
+hst@rpi:~ $ sudo mkdir /root/.arduino15
+hst@rpi:~ $ sudo touch /root/.arduino15/package_index.json
 ```
 
 Now, check if Arduino CLI is installed correctly:
 
 ```bash
-cyan0xff@raspberrypi:~ $ arduino-cli version
+hst@rpi:~ $ arduino-cli version
 arduino-cli version 0.2.0-alpha.preview
 ```
 
 After that, you need download the boards index, type:
 
 ```bash
-cyan0xff@raspberrypi: $ sudo arduino-cli core update-index
+hst@rpi: $ sudo arduino-cli core update-index
 ```
 
 After, install the arduino:avr core (or whatever you need):
 
 ```bash
-cyan0xff@raspberrypi: $ sudo arduino-cli core install arduino:avr
+hst@rpi: $ sudo arduino-cli core install arduino:avr
 ...
 Installing arduino:avr-gcc@4.9.2-atmel3.5.4-arduino2
 arduino:avr-gcc@4.9.2-atmel3.5.4-arduino2 installed
@@ -71,7 +71,7 @@ Arduino CLI is ready to compile and deploy your projects!
 Connect your Arduino Board and verified if Raspbian recognized it:
 
 ```bash
-cyan0xff@raspberrypi: $ sudo arduino-cli board list
+hst@rpi: $ sudo arduino-cli board list
 Discovering...
 
 FQBN    Port            ID              Board Name
@@ -86,7 +86,7 @@ First project
 Create a new project (remember, you need create the Arduino Workspace previously):
 
 ```bash
-cyan0xff@raspberrypi:~ $ arduino-cli sketch new BlinkSerial
+hst@rpi:~ $ arduino-cli sketch new BlinkSerial
 Sketch created in: /home/cyan0xff/Arduino/BlinkSerial
 ```
 
@@ -95,7 +95,7 @@ Sketch created in: /home/cyan0xff/Arduino/BlinkSerial
 Edit the sketch. This example is a simple Blink LED with an serial message (baud 115200).
 
 ```bash
-cyan0xff@raspberrypi:~ $ vim ~/Arduino/BlinkSerial/BlinkSerial.ino
+hst@rpi:~ $ vim ~/Arduino/BlinkSerial/BlinkSerial.ino
 
 void setup() {
   Serial.begin(115200);
@@ -119,7 +119,7 @@ void loop() {
 Once time you save the sketch, you need compile it:
 
 ```bash
-cyan0xff@raspberrypi:~ $ sudo arduino-cli compile -b arduino:avr:uno ~/Arduino/BlinkSerial/
+hst@rpi:~ $ sudo arduino-cli compile -b arduino:avr:uno ~/Arduino/BlinkSerial/
 ...
 Sketch uses 1990 bytes (6%) of program storage space. Maximum is 32256 bytes.
 Global variables use 208 bytes (10%) of dynamic memory, leaving 1840 bytes for local variables. Maximum is 2048 bytes.
@@ -130,8 +130,8 @@ Global variables use 208 bytes (10%) of dynamic memory, leaving 1840 bytes for l
 Attach Arduino board and upload your code:
 
 ```bash
-cyan0xff@raspberrypi:~ $ sudo arduino-cli board attach serial:///dev/ttyUSB0 ~/Arduino/BlinkSerial/
-cyan0xff@raspberrypi:~ $ sudo arduino-cli upload -p /dev/ttyUSB0 --fqbn arduino:avr:uno ~/Arduino/BlinkSerial/
+hst@rpi:~ $ sudo arduino-cli board attach serial:///dev/ttyUSB0 ~/Arduino/BlinkSerial/
+hst@rpi:~ $ sudo arduino-cli upload -p /dev/ttyUSB0 --fqbn arduino:avr:uno ~/Arduino/BlinkSerial/
 ```
 
 It's all! Your Arduino is ready and execute your code!
@@ -141,7 +141,7 @@ It's all! Your Arduino is ready and execute your code!
 Open minicom and listen the serial port with the baud 115200:
 
 ```bash
-cyan0xff@raspberrypi:~ $ sudo minicom -D /dev/ttyUSB0 -b 115200
+hst@rpi:~ $ sudo minicom -D /dev/ttyUSB0 -b 115200
 ...
 ...
 Port /dev/ttyUSB0, 00:08:20
@@ -167,7 +167,7 @@ Arduino CLI provide a tool for search and download the same libraries of Arduino
 > Tip: You can use grep for filter the info. Example:
 
 ```bash
-cyan0xff@raspberrypi:~ $ sudo arduino-cli lib search lcd | grep -i "Name:\|Paragraph:"
+hst@rpi:~ $ sudo arduino-cli lib search lcd | grep -i "Name:\|Paragraph:"
 ...
 Name: "LcdEffects"
   Paragraph:  Underlining! Bold! Italics! This library lets you print all these and more on character LCDs.
@@ -179,13 +179,13 @@ Name: "LcdBarGraph"
   Paragraph:  Using the bouned LiquidChrystal library, bar-graph can be displayed in the screen. See demo: http://youtu.be/noXtsvPRwQk
 Name: "Parallax LCD"
   Paragraph:  It is known to work with Parallax LCD\'s (27976, 27977, 27979).
-cyan0xff@raspberrypi:~ $
+hst@rpi:~ $
 ```
 
 > The same search, but only show the name lib.
 
 ```bash
-cyan0xff@raspberrypi:~ $ sudo arduino-cli lib search lcd | grep -i "Name:"
+hst@rpi:~ $ sudo arduino-cli lib search lcd | grep -i "Name:"
 ...
 Name: "LcdProgressBar"
 Name: "Grove - LCD RGB Backlight"
@@ -194,13 +194,13 @@ Name: "LCDMenuLib"
 Name: "SparkFun Color LCD Shield"
 Name: "CheapLCD"
 Name: "DatavisionLCD"
-cyan0xff@raspberrypi:~ $
+hst@rpi:~ $
 ```
 
 > Installing a lib, LcdProgressBar:
 
 ```bash
-cyan0xff@raspberrypi:~ $ sudo arduino-cli lib install LcdProgressBar
+hst@rpi:~ $ sudo arduino-cli lib install LcdProgressBar
  0 / 536477 [-----------------------------------------------------------------------------------------------------]  0.00%
  LcdProgressBar@1.0.1 0 B / 523.90 KiB [--------------------------------------------------------------------------] 0.00%
  LcdProgressBar@1.0.1 75.20 KiB / 523.90 KiB [=========>----------------------------------------------------------]  14.35% 
@@ -208,7 +208,7 @@ cyan0xff@raspberrypi:~ $ sudo arduino-cli lib install LcdProgressBar
  LcdProgressBar@1.0.1 downloaded
 
 Installed LcdProgressBar@1.0.1
-cyan0xff@raspberrypi:~ $
+hst@rpi:~ $
 ```
 
 And that's it, now you can add it in your .ino file!
@@ -216,7 +216,7 @@ And that's it, now you can add it in your .ino file!
 > Arduino CLI commands:
 
 ```bash
-cyan0xff@raspberrypi:~ $ sudo arduino-cli
+hst@rpi:~ $ sudo arduino-cli
 Arduino Command Line Interface (arduino-cli).
 
 Usage:
