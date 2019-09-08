@@ -8,23 +8,25 @@ header:
 DISCLAIMER:
 ------
 
-I don't take any responsibility about your control. Flash under your own risk! If you're following this guide step by step, your don't have any problem later. If your main board (th9x) is brick, you need buy other to solved problem. Don't need more! Not, don't need sell you control by parts. TH9x main board is very generic and some little cheap, you can buy one on [Banggood] or AliExpress.
+I don't take any responsibility about damage your control. Flash under your own risk! If you're following this guide step by step, your don't have any problem later. If your main board (th9x) bricked (It's very hard that happends), you don't need buy other one.
+Not, don't need sell your control by spare parts. TH9x main board is very generic and some little cheap, you can buy one on Banggood or AliExpress.
+
+![USBasp]({{"/assets/img/posts/2017-12-22-flashing-opentx-to-flysky-th9x-with-avrdude/000_usbasp_cable.jpg" | absolute_url }})
 
 Before starts you need know something's...
 <!-- ------ -->
 
-You need a AVR programmer for flashing [OpenTX] hex (firmware). You can use a USBasp, or you can use your own Arduino as AVRisp. On my case, I used USBasp.
+You need a AVR programmer for flashing [OpenTX] hex (firmware). You can use a USBasp, or you can use your own Arduino as AVRisp (follow this [Arduino official guide]).
+This guide is based on USBasp, but, teorycally it's the same way with Arduino as ISP.
 
 Let's starts...
 ------
 
-First of all, we need open FlySky TH9x to access main board and connect the USBasp or AVRisp. Unscrew and open it. I recommend umount the main board for works more easily. Be careful with flex screen and cables! 
+First to all, we need open FlySky TH9x to access main board and connect the USBasp. Unscrew and open it. I recommend umount the main board from case, that's way is more easily work on it.
 
-I use a AVR cable with 10 pins to connect directly the main board with USBasp. I cut a end and solder it to main board.
+> CAUTION! Be careful with flex screen and cables!
 
-![AVR cable]({{"/assets/img/posts/2017-12-22-flashing-opentx-to-flysky-th9x-with-avrdude/000_10_pins_cable.png" | absolute_url }})
-
-Main board with cables. I used some flux to weld easily.
+I use a AVR cable with 10 pins to connect directly the main board with USBasp. I used some flux to weld easily.
 
 ![Wiring main board]({{"/assets/img/posts/2017-12-22-flashing-opentx-to-flysky-th9x-with-avrdude/001_wiring.png" | absolute_url }})
 
@@ -51,10 +53,11 @@ After weld it and before screw it the main board, verified the screen doesn't mo
 
 ![Screen screw]({{"/assets/img/posts/2017-12-22-flashing-opentx-to-flysky-th9x-with-avrdude/004_before_screw.png" | absolute_url }})
 
-Screw it!
+Now, screw it again!
 
 Well, after complete this, you control is ready to AVRdude. 
-IMPORTANT: This process you must do it without a battery!
+
+> CAUTION! If you have connect any battery to main board, remove it!
 
 I create a .zip specifically for this control, FlySky TH9x. If you download this .zip don't need install [OpenTX] Companion.
 
@@ -68,11 +71,7 @@ Windows .zip contains the .hex file (OpenTX 2.2) and avrdude utility.
 
 Linux .zip only contains the .hex file! You need install avrdude via APT, pacman, or any packages manager. 
 
-```bash
-$: apt-get install avrdude -y
-```
-
-Unzip the files, and open your console on the same directory, type: avrdude.exe
+Unzip the files, and open your console (CMD) on the same directory, type: avrdude.exe
 
 ```bash
 Z:\th9x-opentx>avrdude.exe
@@ -83,12 +82,12 @@ avrdude version 5.10, URL: <http://savannah.nongnu.org/projects/avrdude/>
 Z:\th9x-opentx>
 ```
 
-If you see the previous lines on your console, AVRdude works fine!
+If you see the previous lines on your console, AVRdude it's correctly installed!
 
-Now, flash own hex...
+Now, flash the firmware...
 ------
 
-Connect you own USBasp or AVRisp to main board, and later, connect USBasp to PC.
+Connect your USBasp/AVRisp to main board, and later, connect USBasp to PC.
 
 Type on the console:
 
@@ -96,19 +95,22 @@ Type on the console:
 Z:\th9x-opentx>avrdude.exe -c usbasp -P USB -p m64 -b 19200 -U flash:w:opentx-9x-templates-audio-gvars-battgraph-pgbar-en.hex:i
 ```
 
-If you're using AVRisp, you need changed ...-c usbasp... by ...-c avrisp... and the port is using arduino, in this example use the COM4 port (in linux is ttyACM0 or any other):
+> CAUTION! After avrdude command, you need type ':i' DON'T forget that!
+
+If you're using AVRisp, you need changed '-c usbasp' by '-c avrisp' and the port now in used by arduino is the same detected your system (the same on Arduino IDE).
+In this example is COM4 port (in linux is ttyACM0 or any other):
 
 ```bash
 Z:\th9x-opentx>avrdude.exe -c avrisp -P COM4 -p m64 -b 19200 -U flash:w:opentx-9x-templates-audio-gvars-battgraph-pgbar-en.hex:i
 ```
 
-If you're using Linux, the command is the same, only need type avrdude, deleting dot exe (avrdude <<.exe>>)
+On linux it's the same way...
 
 ```bash
 $: avrdude -c usbasp -P USB -p m64 -b 19200 -U flash:w:opentx-9x-templates-audio-gvars-battgraph-pgbar-en.hex:i
 ```
 
-After flash, the console show:
+After flash is complete, the console show:
 
 ```bash
 ...
@@ -122,7 +124,7 @@ avrdude.exe done.  Thank you.
 
 Now your FlySky TH9x have OpenTX 2.2!
 
-Now disconnect USBasp. Connect the battery to your radio and power on. Consider have a good battery level (OpenTX need some little to flash the eeprom).
+Now disconnect your USBasp. Connect the battery to your radio and power on. Consider have a good battery level (OpenTX need some little to flash the eeprom).
 
 First power on!
 ------
@@ -133,12 +135,15 @@ After flashing OpenTX, and on the first power on, the radio send a error code <<
 
 > If you need access to Setup menu, or any other? The way to access is Long press the + KEY. Try with other keys (UP, -, DOWN).
 
+> You have troubles with avrdude on Windows? [Download utility from official website!]
+
+
 ENJOY! :D
 
 [OpenTX]: http://www.open-tx.org/downloads.html
-[Banggood]: https://www.banggood.com/Flysky-FS-TH9X-2_4G-9CH-Transmitter-Spare-Part-Motherboard-Mainboard-p-1057427.html
+[Arduino official guide]https://www.arduino.cc/en/Tutorial/ArduinoISP
 [Linux .zip (only .hex)]: https://github.com/martindevmx/opentx-flysky-th9x/blob/master/opentxt-2.2-th9x-linux.zip?raw=true
 [Windows .zip]: https://github.com/martindevmx/opentx-flysky-th9x/blob/master/opentxt-2.2-th9x-windows.zip?raw=true
 [OpenTX University.]: http://open-txu.org/home/undergraduate-courses/radio-setup/general-radio-settings/
 [Check this video!]: https://youtu.be/BKiYsAQ2AMg
-[WinAVR download page]: https://sourceforge.net/projects/winavr/
+[Download utility from official website!]: https://sourceforge.net/projects/winavr/
