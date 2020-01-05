@@ -19,30 +19,23 @@ First steps
 First to all, you need download the latest version of Arduino CLI from the [Arduino-CLI repo]:
 
 ```bash
-hst@rpi:~ $ wget http://downloads.arduino.cc/arduino-cli/arduino-cli-0.2.0-alpha.preview-linuxarm.tar.bz2
+hst@rpi:~ $ wget https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_ARMv7.tar.gz
 ```
 
-After that, uncompressed the file and rename to arduino-cli:
+After that, uncompressed the file:
 
 ```bash
-hst@rpi:~ $ tar -xvf arduino-cli-0.2.0-alpha.preview-linuxarm.tar.bz2
-hst@rpi:~ $ mv arduino-cli-0.2.0-alpha.preview-linuxarm arduino-cli
+hst@rpi:~ $ tar -xvf arduino-cli_latest_Linux_ARMv7.tar.gz
+hst@rpi:~ $ mv arduino-cli_latest_Linux_ARMv7
 ```
 
-Now, move arduino-cli to /usr/local/bin and create your default workspace for Arduino (under /home/ user dir). Also you need create a dir (.arduino15/) and a file (.json) inside it to manage the Arduino packages, both under /root/ directory:
+Now, dowload the board index. The package_index.json is a list with all supported by Arduino core.
 
 ```bash
 hst@rpi:~ $ sudo mv arduino-cli /usr/local/bin
-hst@rpi:~ $ mkdir ~/Arduino/
 hst@rpi:~ $ sudo mkdir /root/.arduino15
 hst@rpi:~ $ sudo touch /root/.arduino15/package_index.json
-```
-
-Now, check if Arduino CLI is installed correctly:
-
-```bash
-hst@rpi:~ $ arduino-cli version
-arduino-cli version 0.2.0-alpha.preview
+hst@rpi:~ $ sudo arduino-cli config init
 ```
 
 After that, you need download the boards index, type:
@@ -51,7 +44,9 @@ After that, you need download the boards index, type:
 hst@rpi: $ sudo arduino-cli core update-index
 ```
 
-After, install the arduino:avr core (or whatever you need):
+> This step if only you want install arduino:avr -> atmel mcu:m328p:m2560~!
+
+Install the arduino:avr core (or whatever you need):
 
 ```bash
 hst@rpi: $ sudo arduino-cli core install arduino:avr
@@ -83,16 +78,16 @@ FQBN    Port            ID              Board Name
 First project
 ------
 
-Create a new project (remember, you need create the Arduino Workspace previously):
+Create a new project:
 
 ```bash
 hst@rpi:~ $ arduino-cli sketch new BlinkSerial
 Sketch created in: /home/cyan0xff/Arduino/BlinkSerial
 ```
 
-> NOTE: It's very important that skecth.ino is inside in a folder with the same name. This if you want create the project manually (mkdir sketch/ and touch sketch/sketch.ino).
+> NOTE: It's very important that sketch.ino is inside in a folder with the same name. This if you want create the project manually (mkdir sketch/ and touch sketch/sketch.ino).
 
-Edit the sketch. This example is a simple Blink LED with an serial message (baud 115200).
+Example sketch.
 
 ```bash
 hst@rpi:~ $ vim ~/Arduino/BlinkSerial/BlinkSerial.ino
@@ -116,7 +111,7 @@ void loop() {
 ~
 ```
 
-Once time you save the sketch, you need compile it:
+Once time save your sketch, you need compile it:
 
 ```bash
 hst@rpi:~ $ sudo arduino-cli compile -b arduino:avr:uno ~/Arduino/BlinkSerial/
@@ -125,7 +120,7 @@ Sketch uses 1990 bytes (6%) of program storage space. Maximum is 32256 bytes.
 Global variables use 208 bytes (10%) of dynamic memory, leaving 1840 bytes for local variables. Maximum is 2048 bytes.
 ```
 
-> NOTE: The parameter on arduino:avr:<\board> needs to be replaced for your Arduino board version!
+> NOTE: The parameter: arduino:avr:<\board> needs to be replaced by your Arduino board version!
 
 Attach Arduino board and upload your code:
 
@@ -144,7 +139,7 @@ Open minicom and listen the serial port with the baud 115200:
 hst@rpi:~ $ sudo minicom -D /dev/ttyUSB0 -b 115200
 ...
 ...
-Port /dev/ttyUSB0, 00:08:20
+Port /dev/ttyUSB0, 00:00:20
 
 Press CTRL-A Z for help on special keys
 
@@ -162,9 +157,9 @@ Hello from Arduino!
 How to search and install an lib?
 ------
 
-Arduino CLI provide a tool for search and download the same libraries of Arduino IDE from official repos. With this tool you can download and install any lib you need it!
+Arduino CLI provide a tool for search and install the same libraries of Arduino IDE (official repos).
 
-> Tip: You can use grep for filter the info. Example:
+> Tip: You can use grep for filter the info.
 
 ```bash
 hst@rpi:~ $ sudo arduino-cli lib search lcd | grep -i "Name:\|Paragraph:"
@@ -211,7 +206,7 @@ Installed LcdProgressBar@1.0.1
 hst@rpi:~ $
 ```
 
-And that's it, now you can add it in your .ino file!
+And that's it, now you can add the lib in your .ino file!
 
 > Arduino CLI commands:
 
@@ -242,7 +237,7 @@ Flags:
       --format string        The output format, can be [text|json]. (default "text")
   -h, --help                 help for arduino-cli
 
-Use "arduino-cli [command] --help" for more information about a command.
+Use "arduino-cli [command] --help" for more information about any command.
 ```
 
 [Arduino syntax highlighting]:https://github.com/sudar/vim-arduino-syntax
