@@ -26,22 +26,19 @@ After that, uncompressed the file:
 
 ```bash
 hst@rpi:~ $ tar -xvf arduino-cli_latest_Linux_ARMv7.tar.gz
-hst@rpi:~ $ mv arduino-cli_latest_Linux_ARMv7
 ```
 
-Now, dowload the board index. The package_index.json is a list with all supported by Arduino core.
+Now, move arduino-cli binarie to /usr/local/bin/:
 
 ```bash
 hst@rpi:~ $ sudo mv arduino-cli /usr/local/bin
-hst@rpi:~ $ sudo mkdir /root/.arduino15
-hst@rpi:~ $ sudo touch /root/.arduino15/package_index.json
-hst@rpi:~ $ sudo arduino-cli config init
 ```
 
-After that, you need download the boards index, type:
+Now initialize the config file before you download the board index:
 
 ```bash
-hst@rpi: $ sudo arduino-cli core update-index
+hst@rpi:~ $ sudo arduino-cli config init
+hst@rpi:~ $ sudo arduino-cli core update-index
 ```
 
 > This step if only you want install arduino:avr -> atmel mcu:m328p:m2560~!
@@ -154,7 +151,7 @@ Hello from Arduino!
 ...
 ```
 
-How to search and install an lib?
+How to search and install libraries?
 ------
 
 Arduino CLI provide a tool for search and install the same libraries of Arduino IDE (official repos).
